@@ -1,0 +1,47 @@
+{
+  "name": "vector-indexed-db",
+  "version": "0.0.1",
+  "description": "Lightweight and efficient vector database in browser",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./core": {
+      "import": "./dist/core/index.mjs",
+      "require": "./dist/core/index.js",
+      "types": "./dist/core/index.d.ts"
+    }
+  },
+  "sideEffects": false,
+  "scripts": {
+    "dev": "pnpm run \"/^dev:.+/\"",
+    "dev:ts": "tsup --watch",
+    "dev:rust": "npm-watch build:rust",
+    "build": "npm run build:rust && npm run build:ts",
+    "build:ts": "tsup",
+    "build:rust": "wasm-pack build --out-dir dist/core --target web --no-pack --out-name index"
+  },
+  "watch": {
+    "build:rust": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "rs",
+      "quiet": true
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild-plugin-wasm": "^1.1.0",
+    "npm-watch": "^0.13.0",
+    "tsup": "^8.1.0",
+    "typescript": "^5.5.3",
+    "wasm-pack": "^0.13.0"
+  }
+}

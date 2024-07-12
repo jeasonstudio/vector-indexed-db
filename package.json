@@ -11,8 +11,7 @@
       "types": "./dist/index.d.ts"
     },
     "./core": {
-      "import": "./dist/core/index.mjs",
-      "require": "./dist/core/index.js",
+      "import": "./dist/core/index.js",
       "types": "./dist/core/index.d.ts"
     }
   },
@@ -23,7 +22,7 @@
     "dev:rust": "npm-watch build:rust",
     "build": "npm run build:rust && npm run build:ts",
     "build:ts": "tsup",
-    "build:rust": "wasm-pack build --out-dir dist/core --target web --no-pack --out-name index"
+    "build:rust": "wasm-pack build --dev --out-dir dist/core --target web --no-pack --out-name index"
   },
   "watch": {
     "build:rust": {
@@ -35,8 +34,8 @@
     }
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "jeason.eth <me@cowpoke.cc>",
+  "license": "MIT",
   "devDependencies": {
     "esbuild-plugin-wasm": "^1.1.0",
     "npm-watch": "^0.13.0",

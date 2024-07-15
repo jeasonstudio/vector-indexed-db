@@ -2,12 +2,11 @@
   "name": "vector-indexed-db",
   "version": "0.0.1",
   "description": "Lightweight and efficient vector database in browser",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "type": "module",
+  "module": "./dist/index.js",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
+      "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
     "./core": {
@@ -22,7 +21,10 @@
     "dev:rust": "npm-watch build:rust",
     "build": "npm run build:rust && npm run build:ts",
     "build:ts": "tsup",
-    "build:rust": "wasm-pack build --dev --out-dir dist/core --target web --no-pack --out-name index"
+    "build:rust": "wasm-pack build --out-dir dist/core --target bundler --no-pack --out-name index && rimraf \"./dist/**/.gitignore\" -g",
+    "test": "pnpm run \"/^test:.+/\"",
+    "test:ts": "vitest --run",
+    "test:rust": "cargo test"
   },
   "watch": {
     "build:rust": {
@@ -33,14 +35,38 @@
       "quiet": true
     }
   },
-  "keywords": [],
+  "files": [
+    "dist",
+    "dist/core"
+  ],
+  "keywords": [
+    "vector-db",
+    "database",
+    "indexeddb",
+    "llm",
+    "rag"
+  ],
   "author": "jeason.eth <me@cowpoke.cc>",
   "license": "MIT",
+  "homepage": "https://github.com/jeasonstudio/vector-indexed-db#readme",
+  "bugs": {
+    "url": "https://github.com/jeasonstudio/vector-indexed-db/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeasonstudio/vector-indexed-db.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
   "devDependencies": {
     "esbuild-plugin-wasm": "^1.1.0",
     "npm-watch": "^0.13.0",
+    "rimraf": "^6.0.1",
     "tsup": "^8.1.0",
     "typescript": "^5.5.3",
+    "vitest": "^2.0.2",
     "wasm-pack": "^0.13.0"
   }
 }

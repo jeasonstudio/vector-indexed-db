@@ -5,7 +5,7 @@ export default defineConfig([
   {
     dts: true,
     entry: ['src/index.ts'],
-    format: ['esm', 'cjs'],
+    format: 'esm',
     sourcemap: true,
     esbuildPlugins: [wasmLoader({ mode: 'embedded' })],
   },

@@ -12,3 +12,5 @@ crate-type = ["cdylib"]
 wasm-bindgen = "0.2.92"
 js-sys = "0.3.69"
 web-sys = "0.3.69"
+hnsw = "0.11.0"
+space = { version = "0.17.0", default-features = false, features = ["alloc"] }

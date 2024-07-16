@@ -8,5 +8,6 @@ export default defineConfig([
     format: 'esm',
     sourcemap: true,
     esbuildPlugins: [wasmLoader({ mode: 'embedded' })],
+    platform: 'browser',
   },
 ]);
